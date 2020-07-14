@@ -1,3 +1,6 @@
 [submodule "sink"]
 	path = sink
 	url = ssh://git@github.com/AchmadFathoni/sink.git
+[submodule "developer"]
+	path = developer
+	url = git@github.com:AchmadFathoni/developer.git
