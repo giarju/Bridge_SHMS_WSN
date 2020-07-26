@@ -31,6 +31,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:PCB CA-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -39,7 +40,7 @@ Sheet 1 1
 Title "Piezosensor Charge Amplifier "
 Date "2020-07-08"
 Rev "1.0"
-Comp "LSKK ITB"
+Comp "STEI ITB"
 Comment1 "Alif Ilham Madani"
 Comment2 "Designed By:"
 Comment3 ""

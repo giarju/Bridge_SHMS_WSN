@@ -31,6 +31,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:PCB CA-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -39,7 +40,7 @@ Sheet 1 1
 Title "Piezosensor Charge Amplifier "
 Date "2020-07-08"
 Rev "1.0"
-Comp "LSKK ITB"
+Comp "STEI ITB"
 Comment1 "Alif Ilham Madani"
 Comment2 "Designed By:"
 Comment3 ""
@@ -173,7 +174,7 @@ U 1 1 5F055944
 P 1400 4600
 F 0 "J2" H 1400 4700 50  0000 C CNN
 F 1 "Vin1" H 1400 4400 50  0000 C CNN
-F 2 "Connectors_Phoenix:PhoenixContact_MSTBA-G_02x5.08mm_Angled" H 1400 4600 50  0001 C CNN
+F 2 "Connectors_Phoenix:PhoenixContact_MSTBVA-G_02x5.08mm_Vertical" H 1400 4600 50  0001 C CNN
 F 3 "" H 1400 4600 50  0001 C CNN
 	1    1400 4600
 	-1   0    0    1   
@@ -184,7 +185,7 @@ U 1 1 5F055AC5
 P 5550 4600
 F 0 "J3" H 5550 4700 50  0000 C CNN
 F 1 "Vin2" H 5550 4400 50  0000 C CNN
-F 2 "Connectors_Phoenix:PhoenixContact_MSTBA-G_02x5.08mm_Angled" H 5550 4600 50  0001 C CNN
+F 2 "Connectors_Phoenix:PhoenixContact_MSTBVA-G_02x5.08mm_Vertical" H 5550 4600 50  0001 C CNN
 F 3 "" H 5550 4600 50  0001 C CNN
 	1    5550 4600
 	1    0    0    1   
@@ -368,7 +369,7 @@ U 1 1 5F05C383
 P 900 2650
 F 0 "J1" H 900 2850 50  0000 C CNN
 F 1 "Power Port" H 900 2350 50  0000 C CNN
-F 2 "" H 900 2650 50  0001 C CNN
+F 2 "Connectors_Phoenix:PhoenixContact_MSTBVA-G_04x5.08mm_Vertical" H 900 2650 50  0001 C CNN
 F 3 "" H 900 2650 50  0001 C CNN
 	1    900  2650
 	-1   0    0    1   
