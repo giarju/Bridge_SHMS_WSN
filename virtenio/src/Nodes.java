@@ -51,19 +51,19 @@ public class Nodes {
 	
 	protected int common_channel;
 	protected int common_pan_id;
-	protected int coordinator_id = 0xAF01;
-	protected int coordinator_pan_id;
+	protected int coordinator_id = 0xAF00;
+	protected int coordinator_pan_id = 0x000B;
 
 
 	
 	Nodes ()
 	{
 		id = 0x0000;
-		status = 0x01;
+		status = 0x00;
 		common_channel = 0;
 		common_pan_id = 0x0000;
-		coordinator_id = 0xAF01;
-		coordinator_pan_id = 0x000C;
+		coordinator_id = 0xAF00;
+		coordinator_pan_id = 0x000B;
 		time = "";
 		date = "";
 	}

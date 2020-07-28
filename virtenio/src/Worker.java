@@ -480,7 +480,7 @@ public class Worker extends Sensor {
 //			System.out.println(samp_freq);		
 			System.out.println("==========peak==========");
 			peakPicking(accel_z_real, accel_z_imag, peak);
-//			System.out.println(Arrays.toString(peak));					
+			System.out.println(Arrays.toString(peak));					
 	}	
 		
 

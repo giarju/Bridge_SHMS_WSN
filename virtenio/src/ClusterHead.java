@@ -37,6 +37,7 @@ public class ClusterHead extends Sensor {
 	private float []max_amp = new float[max_num_worker];
 	private float []mode_shape = new float[max_num_worker];
 	private int []worker_id = new int[max_num_worker];
+	private int id4coord = 0xAF01;
 	
 	/* 
 	 * Variable status
@@ -189,11 +190,15 @@ public class ClusterHead extends Sensor {
 	 */
 	private float meanNatFreq(float[] nat_freq) {
 		float sum = 0;
+		int not_nan = 0;
 		for (int i = 0; i < nat_freq.length; i++) {
-			sum = sum + nat_freq[i];
+			if(!Float.isNaN(nat_freq[i])){
+				sum = sum + nat_freq[i];
+				not_nan = not_nan + 1;
+			}
 		}
 		
-		return (sum/nat_freq.length);
+		return (sum/not_nan);
 	}
 	
 	/** 
@@ -228,6 +233,7 @@ public class ClusterHead extends Sensor {
 	 * @param mean_freq frekuensi natural rata-rata
 	 */
 	public float[] prepareDataToSink(float []mode, float mean_freq) {
+		float []data_to_sink = new float[mode.length + 3];
 		
 		/* menyiapkan data NaN*/
 		byte[] nan0 = new byte[4];
@@ -236,16 +242,6 @@ public class ClusterHead extends Sensor {
 		nan0[2] =(byte) 0x01;
 		nan0[3] = (byte) 0x1;
 		
-		float []data_to_sink = new float[mode.length + 3];
-		for (byte i = 0; i < mode.length; i++){
-			if (mode[i] != (float) 0x7fc00001 && mode[i] != (float)0x7fc00002) {
-				data_to_sink[i+1] = mode[i];
-			}
-			else {
-				data_to_sink[i+1] = byteArray2Float(nan0);
-			}
-		}
-		
 		byte[] nan1 = new byte[4];
 		nan1[0] = (byte) 0x7f;
 		nan1[1] = (byte) 0xc0; 
@@ -253,18 +249,37 @@ public class ClusterHead extends Sensor {
 		nan1[3] = (byte) 0x01;
 		data_to_sink[0] = byteArray2Float(nan1);
 		
+		byte[] head_id = int2ByteArray(id);
+		byte[] head_pan = int2ByteArray(common_pan_id);
+		byte[] source = new byte[4];
+		source[0] = head_pan[2];
+		source[1] = head_pan[3];
+		source[2] = head_id[2];
+		source[3] = head_id[3];
+		data_to_sink[1] = byteArray2Float(source);
+		
+		for (byte i = 0; i < mode.length; i++){
+			if (mode[i] != (float) 0x7fc00001 && mode[i] != (float)0x7fc00002) {
+				data_to_sink[i+2] = mode[i];
+			}
+			else {
+				data_to_sink[i+2] = byteArray2Float(nan0);
+			}
+		}
+		
+		
 		if (mean_freq != (float) 0x7fc00001 && mean_freq != (float) 0x7fc00002) {
-			data_to_sink[mode.length + 1] = mean_freq;
+			data_to_sink[mode.length + 2] = mean_freq;
 		}
 		else {
-			data_to_sink[mode.length + 1] = byteArray2Float(nan0);
+			data_to_sink[mode.length + 2] = byteArray2Float(nan0);
 		}
-		byte[] nan2 = new byte[4];
-		nan2[0] = (byte) 0x7f;
-		nan2[1] = (byte) 0xc0; 
-		nan2[2] =(byte) 0x00;
-		nan2[3] = (byte) 0x02;
-		data_to_sink[mode.length + 2] = byteArray2Float(nan2);
+//		byte[] nan2 = new byte[4];
+//		nan2[0] = (byte) 0x7f;
+//		nan2[1] = (byte) 0xc0; 
+//		nan2[2] =(byte) 0x00;
+//		nan2[3] = (byte) 0x02;
+//		data_to_sink[mode.length + 2] = byteArray2Float(nan2);
 				
 		return data_to_sink;
 	}
@@ -364,25 +379,26 @@ public class ClusterHead extends Sensor {
 			/* State sleep, hanya radio yang aktif */
 			if (head.status == 0x00) {		
 				/* Menerima perintah jika ada kiriman dari coordinator */
-//				head.receiveData(radio, red, head.common_channel, head.common_pan_id, head.id);
+				head.receiveData(radio, red, head.common_channel, head.coordinator_pan_id, head.id4coord);
 				/* jika perintah yang diberikan adalah wake */
-//				if (head.received_data != null) {
-//					System.out.println(Arrays.toString(head.received_data.getPayload()));
-//					if (byteArray2Int(head.received_data.getPayload()) == 0xBA17) {
-					if(button.isPressed()) {	
+				if (head.received_data != null) {
+					System.out.println(Arrays.toString(head.received_data.getPayload()));
+					if (byteArray2Int(head.received_data.getPayload()) == 0xBA17) {
+//					if(button.isPressed()) {	
 						head.status = 0x01;
 						timer_start = head.counter;
 						head.resetWorkerStatus();
 						System.out.println("me wakey");
 						orange.off();
 					}	
-//				}	
+				}	
 					
 				/* jika tidak terdapat perintah untuk bangun */
 				else {
 					System.out.println("slp");
 					orange.on();
-//					CPUHelper.setPowerState(CPUConstants.V_POWER_STATE_STANDBY, 600000);			
+					/* set cpu dalam mode standby selama 6 detik, jika ada kiriman radio maka sleep akan ter-interrupt */
+					CPUHelper.setPowerState(CPUConstants.V_POWER_STATE_STANDBY, 6000);
 					System.out.println("me see");
 				}
 			}
@@ -409,7 +425,7 @@ public class ClusterHead extends Sensor {
 			else if (head.status == 0x02) {
 				System.out.println("waiting!");	
 				
-				head.message = 0xAB17;
+//				head.message = 0xAB17;
 				
 				/* menerima data dan menyimpannya dalam array */
 				if (!head.isAllReceived(head.all_data, head.num_worker) && (timer_end - timer_start < 60000)) {	
@@ -417,7 +433,7 @@ public class ClusterHead extends Sensor {
 					if (head.received_data != null) {				
 						head.all_data = head.saveData(head.received_data, head.max_amp, head.nat_freq, head.worker_id, head.num_worker, head.all_data);
 						System.out.println("received!" + Arrays.toString(head.received_data.getPayload()));
-						head.sendData(radio, red, int2ByteArray(head.message), head.common_channel, head.common_pan_id, head.id, (int)head.received_data.getSrcAddr());
+//						head.sendData(radio, red, int2ByteArray(head.message), head.common_channel, head.common_pan_id, head.id, (int)head.received_data.getSrcAddr());
 					}
 				}
 				
@@ -449,8 +465,7 @@ public class ClusterHead extends Sensor {
 //				head.mode_shape[2] = 3;
 //				head.mode_shape[3] = 4;
 //				head.mode_shape[4] = 5;
-//				head.mode_shape[5] = 6;
-//				head.mean_nat_freq = 10;
+//				head.mean_nat_freq = 3;
 				
 				/* menyiapkan data untuk dikirimkan*/
 				float []data_to_sink = head.prepareDataToSink(head.mode_shape, head.mean_nat_freq);			
@@ -463,12 +478,13 @@ public class ClusterHead extends Sensor {
 					head.coordinator_received = ~head.SEND_SUCCESS;
 					//dummy
 //					timer_start = head.counter;
+//					Thread.sleep(500);
 				}
 				
 				/* mencoba untuk mengirimkan data ke sink */
 				else {	
 					System.out.println(Arrays.toString(data_to_sink));
-					head.coordinator_received = head.sendData(radio, red, FloatArray2ByteArray(data_to_sink), head.common_channel, head.common_pan_id, head.id, head.coordinator_id);										
+					head.coordinator_received = head.sendData(radio, red, FloatArray2ByteArray(data_to_sink), head.common_channel, head.coordinator_pan_id, head.id, head.coordinator_id);										
 				}
 				
 				timer_end = head.counter;
