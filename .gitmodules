@@ -4,6 +4,6 @@
 [submodule "developer"]
 	path = developer
 	url = git@github.com:AchmadFathoni/developer.git
-[submodule "GUI"]
-	path = GUI
-	url = git@github.com:AchmadFathoni/GUI.git
+[submodule "WebGUI"]
+	path = WebGUI
+	url = git@github.com:AchmadFathoni/MonitorJembatan.git
