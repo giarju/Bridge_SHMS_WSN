@@ -1,0 +1,392 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:PCB CA-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Piezosensor Charge Amplifier "
+Date "2020-07-08"
+Rev "1.0"
+Comp "STEI ITB"
+Comment1 "Alif Ilham Madani"
+Comment2 "Designed By:"
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L R R1
+U 1 1 5F053141
+P 2500 4150
+F 0 "R1" V 2580 4150 50  0000 C CNN
+F 1 "1M" V 2500 4150 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2430 4150 50  0001 C CNN
+F 3 "" H 2500 4150 50  0001 C CNN
+	1    2500 4150
+	-1   0    0    1   
+$EndComp
+$Comp
+L R R2
+U 1 1 5F0532E8
+P 4700 4200
+F 0 "R2" V 4780 4200 50  0000 C CNN
+F 1 "1M" V 4700 4200 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 4630 4200 50  0001 C CNN
+F 3 "" H 4700 4200 50  0001 C CNN
+	1    4700 4200
+	-1   0    0    1   
+$EndComp
+$Comp
+L C C1
+U 1 1 5F0534CE
+P 2050 4150
+F 0 "C1" H 2075 4250 50  0000 L CNN
+F 1 "1n" H 2075 4050 50  0000 L CNN
+F 2 "Capacitors_THT:CP_Radial_Tantal_D4.5mm_P2.50mm" H 2088 4000 50  0001 C CNN
+F 3 "" H 2050 4150 50  0001 C CNN
+	1    2050 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C2
+U 1 1 5F053601
+P 5000 4200
+F 0 "C2" H 5025 4300 50  0000 L CNN
+F 1 "1n" H 5025 4100 50  0000 L CNN
+F 2 "Capacitors_THT:CP_Radial_Tantal_D4.5mm_P2.50mm" H 5038 4050 50  0001 C CNN
+F 3 "" H 5000 4200 50  0001 C CNN
+	1    5000 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L TL082 U1
+U 2 1 5F053738
+P 4000 4150
+F 0 "U1" H 4000 4350 50  0000 L CNN
+F 1 "TL082" H 4000 3950 50  0000 L CNN
+F 2 "Housings_DIP:DIP-8_W7.62mm_Socket" H 4000 4150 50  0001 C CNN
+F 3 "" H 4000 4150 50  0001 C CNN
+	2    4000 4150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR01
+U 1 1 5F053B58
+P 3650 4550
+F 0 "#PWR01" H 3650 4300 50  0001 C CNN
+F 1 "GND" H 3650 4400 50  0000 C CNN
+F 2 "" H 3650 4550 50  0001 C CNN
+F 3 "" H 3650 4550 50  0001 C CNN
+	1    3650 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Battery_Cell BT1
+U 1 1 5F0542EE
+P 2600 1850
+F 0 "BT1" H 2700 1950 50  0000 L CNN
+F 1 "9V" H 2700 1850 50  0000 L CNN
+F 2 "" V 2600 1910 50  0001 C CNN
+F 3 "" V 2600 1910 50  0001 C CNN
+	1    2600 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Battery_Cell BT2
+U 1 1 5F054494
+P 2600 2300
+F 0 "BT2" H 2700 2400 50  0000 L CNN
+F 1 "9V" H 2700 2300 50  0000 L CNN
+F 2 "" V 2600 2360 50  0001 C CNN
+F 3 "" V 2600 2360 50  0001 C CNN
+	1    2600 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 5F0545A6
+P 3100 2150
+F 0 "#PWR02" H 3100 1900 50  0001 C CNN
+F 1 "GND" H 3100 2000 50  0000 C CNN
+F 2 "" H 3100 2150 50  0001 C CNN
+F 3 "" H 3100 2150 50  0001 C CNN
+	1    3100 2150
+	1    0    0    -1  
+$EndComp
+Text GLabel 2600 1650 1    60   Input ~ 0
+BAT+
+Text GLabel 2600 2400 3    60   Input ~ 0
+BAT-
+Text GLabel 2900 3550 0    60   Input ~ 0
+BAT+
+Text GLabel 3650 5550 3    60   Input ~ 0
+BAT-
+Text GLabel 1400 2350 1    60   Input ~ 0
+BAT+
+Text GLabel 1400 2850 3    60   Input ~ 0
+BAT-
+$Comp
+L GND #PWR03
+U 1 1 5F055565
+P 1600 2700
+F 0 "#PWR03" H 1600 2450 50  0001 C CNN
+F 1 "GND" H 1600 2550 50  0000 C CNN
+F 2 "" H 1600 2700 50  0001 C CNN
+F 3 "" H 1600 2700 50  0001 C CNN
+	1    1600 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Screw_Terminal_01x02 J2
+U 1 1 5F055944
+P 1400 4600
+F 0 "J2" H 1400 4700 50  0000 C CNN
+F 1 "Vin1" H 1400 4400 50  0000 C CNN
+F 2 "Connectors_Phoenix:PhoenixContact_MSTBVA-G_02x5.08mm_Vertical" H 1400 4600 50  0001 C CNN
+F 3 "" H 1400 4600 50  0001 C CNN
+	1    1400 4600
+	-1   0    0    1   
+$EndComp
+$Comp
+L Screw_Terminal_01x02 J3
+U 1 1 5F055AC5
+P 5550 4600
+F 0 "J3" H 5550 4700 50  0000 C CNN
+F 1 "Vin2" H 5550 4400 50  0000 C CNN
+F 2 "Connectors_Phoenix:PhoenixContact_MSTBVA-G_02x5.08mm_Vertical" H 5550 4600 50  0001 C CNN
+F 3 "" H 5550 4600 50  0001 C CNN
+	1    5550 4600
+	1    0    0    1   
+$EndComp
+Connection ~ 3900 4500
+Wire Wire Line
+	3900 4600 5350 4600
+Connection ~ 5000 4500
+Connection ~ 3400 4500
+Wire Wire Line
+	1600 2550 1600 2700
+Wire Wire Line
+	3000 4250 3000 4850
+Wire Wire Line
+	4300 4850 4300 4250
+Wire Wire Line
+	3000 4850 4300 4850
+Connection ~ 2600 2050
+Wire Wire Line
+	2600 2050 3100 2050
+Wire Wire Line
+	2600 1950 2600 2100
+Wire Wire Line
+	3100 2050 3100 2150
+Wire Wire Line
+	3400 4500 3900 4500
+Connection ~ 3650 4500
+Connection ~ 3650 4250
+Wire Wire Line
+	3650 4500 3650 4550
+Wire Wire Line
+	3900 4450 3900 4600
+Wire Wire Line
+	3400 4450 3400 4600
+Wire Wire Line
+	4700 3150 4700 4050
+Wire Wire Line
+	5000 3800 5000 4050
+Connection ~ 4700 4500
+Wire Wire Line
+	4700 4350 4700 4500
+Wire Wire Line
+	5000 4500 5000 4350
+Wire Wire Line
+	4100 4500 5350 4500
+Wire Wire Line
+	4100 4450 4100 4500
+Wire Wire Line
+	2050 4300 2050 4500
+Wire Wire Line
+	2050 3800 2050 4000
+Wire Wire Line
+	2500 3150 2500 4000
+Connection ~ 2500 4500
+Wire Wire Line
+	2500 4500 2500 4300
+Wire Wire Line
+	3200 4500 3200 4450
+Wire Wire Line
+	3600 4250 3700 4250
+Wire Wire Line
+	3300 3800 2050 3800
+Connection ~ 2500 3800
+Wire Wire Line
+	4000 3800 5000 3800
+Connection ~ 4700 3800
+$Comp
+L GND #PWR04
+U 1 1 5F056F3F
+P 3650 3250
+F 0 "#PWR04" H 3650 3000 50  0001 C CNN
+F 1 "GND" H 3650 3100 50  0000 C CNN
+F 2 "" H 3650 3250 50  0001 C CNN
+F 3 "" H 3650 3250 50  0001 C CNN
+	1    3650 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 3200 3650 3250
+Connection ~ 3650 3200
+$Comp
+L TL082 U1
+U 1 1 5F0536F3
+P 3300 4150
+F 0 "U1" H 3300 4350 50  0000 L CNN
+F 1 "TL082" H 3300 3950 50  0000 L CNN
+F 2 "Housings_DIP:DIP-8_W7.62mm_Socket" H 3300 4150 50  0001 C CNN
+F 3 "" H 3300 4150 50  0001 C CNN
+	1    3300 4150
+	0    1    -1   0   
+$EndComp
+Wire Wire Line
+	3650 3550 3650 4250
+Wire Wire Line
+	1600 4500 3200 4500
+Connection ~ 2050 4500
+Wire Wire Line
+	3400 4600 1600 4600
+Wire Wire Line
+	4000 3800 4000 3850
+Wire Wire Line
+	3300 3800 3300 3850
+Wire Wire Line
+	3650 4850 3650 4900
+Connection ~ 3650 4850
+$Comp
+L SW_DIP_x01 SW1
+U 1 1 5F05AA78
+P 3300 3550
+F 0 "SW1" H 3300 3700 50  0000 C CNN
+F 1 "SW_DIP_x01" H 3300 3400 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 3300 3550 50  0001 C CNN
+F 3 "" H 3300 3550 50  0001 C CNN
+	1    3300 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2900 3550 3000 3550
+Wire Wire Line
+	3600 3550 3650 3550
+$Comp
+L SW_DIP_x01 SW2
+U 1 1 5F05ADFF
+P 3650 5200
+F 0 "SW2" H 3650 5350 50  0000 C CNN
+F 1 "SW_DIP_x01" H 3650 5050 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm" H 3650 5200 50  0001 C CNN
+F 3 "" H 3650 5200 50  0001 C CNN
+	1    3650 5200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3650 5500 3650 5550
+$Comp
+L Conn_01x04 J4
+U 1 1 5F05B5A6
+P 2600 2950
+F 0 "J4" H 2600 3150 50  0000 C CNN
+F 1 "Vout1" H 2600 2650 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 2600 2950 50  0001 C CNN
+F 3 "" H 2600 2950 50  0001 C CNN
+	1    2600 2950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2800 3150 2800 3200
+Wire Wire Line
+	2700 3200 4500 3200
+Wire Wire Line
+	2600 3150 2600 3200
+Wire Wire Line
+	2600 3200 2500 3200
+Connection ~ 2500 3200
+Wire Wire Line
+	2700 3150 2700 3200
+Connection ~ 2800 3200
+$Comp
+L Conn_01x04 J5
+U 1 1 5F05B826
+P 4600 2950
+F 0 "J5" H 4600 3150 50  0000 C CNN
+F 1 "Vout2" H 4600 2650 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 4600 2950 50  0001 C CNN
+F 3 "" H 4600 2950 50  0001 C CNN
+	1    4600 2950
+	0    1    -1   0   
+$EndComp
+Wire Wire Line
+	4600 3150 4600 3200
+Wire Wire Line
+	4600 3200 4700 3200
+Connection ~ 4700 3200
+Wire Wire Line
+	4400 3200 4400 3150
+Wire Wire Line
+	4500 3200 4500 3150
+Connection ~ 4400 3200
+$Comp
+L Screw_Terminal_01x04 J1
+U 1 1 5F05C383
+P 900 2650
+F 0 "J1" H 900 2850 50  0000 C CNN
+F 1 "Power Port" H 900 2350 50  0000 C CNN
+F 2 "Connectors_Phoenix:PhoenixContact_MSTBVA-G_04x5.08mm_Vertical" H 900 2650 50  0001 C CNN
+F 3 "" H 900 2650 50  0001 C CNN
+	1    900  2650
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1400 2350 1400 2450
+Wire Wire Line
+	1400 2450 1100 2450
+Wire Wire Line
+	1400 2850 1400 2750
+Wire Wire Line
+	1400 2750 1100 2750
+Wire Wire Line
+	1100 2550 1600 2550
+Wire Wire Line
+	1100 2650 1150 2650
+Wire Wire Line
+	1150 2650 1150 2550
+Connection ~ 1150 2550
+$EndSCHEMATC
