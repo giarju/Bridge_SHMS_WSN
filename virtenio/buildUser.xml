@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Preon32 Sandbox User" basedir=".">
+
+	<!-- Makro to switch a context -->
+	<macrodef name="switchContext">
+		<attribute name="to" />
+		<sequential>
+			<propertyfile file="config/currentContext.properties">
+				<entry key="context.file" value="@{to}" />
+			</propertyfile>
+			<echoproperties srcfile="@{to}" />
+		</sequential>
+	</macrodef>
+
+
+	<!-- Targets to switch contexts -->
+	<target name="head_c1_h1.com14">
+		<switchContext to="config/head_c1_h1.properties" />
+	</target>
+	<target name="worker_c1_w1.com15">
+		<switchContext to="config/worker_c1_w1.properties" />
+	</target>
+	<target name="worker_c1_w2.com16">
+		<switchContext to="config/worker_c1_w2.properties" />
+	</target>
+	<target name="worker_c1_w3.com17">
+		<switchContext to="config/worker_c1_w3.properties" />
+	</target>
+	<target name="worker_c1_w4.com18">
+		<switchContext to="config/worker_c1_w4.properties" />
+	</target>
+	<target name="worker_c1_w5.com19">
+		<switchContext to="config/worker_c1_w5.properties" />
+	</target>
+	<target name="head_c2_h1.com20">
+			<switchContext to="config/head_c2_h1.properties" />
+	</target>
+	<target name="worker_c2_w1.com21">
+			<switchContext to="config/worker_c2_w1.properties" />
+	</target>
+	<target name="worker_c2_w2.com22">
+			<switchContext to="config/worker_c2_w2.properties" />
+	</target>
+	<target name="worker_c2_w3.com23">
+			<switchContext to="config/worker_c2_w3.properties" />
+	</target>
+	<target name="worker_c2_w4.com24">
+			<switchContext to="config/worker_c2_w4.properties" />
+	</target>
+	<target name="worker_c2_w5.com25">
+			<switchContext to="config/worker_c2_w5.properties" />
+	</target>
+</project>
